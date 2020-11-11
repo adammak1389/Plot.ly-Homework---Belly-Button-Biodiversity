@@ -1,5 +1,5 @@
 
-var sampleTest = "940"
+var sample_test = "940"
 
 // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
@@ -13,7 +13,7 @@ d3.json("samples.json").then((bbdata) => {
     //extract relevant data sets
     var samples = bbdata.samples;
     console.log(samples);
-    var resultarraysamples = samples.filter(sample => sample.id == sampleTest);
+    var resultarraysamples = samples.filter(sample => sample.id == sample_test);
     console.log(resultarraysamples);
     var sampleresult = resultarraysamples[0];
     console.log(sampleresult);   

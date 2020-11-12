@@ -3,19 +3,20 @@ var sample_test = "940"
 
 // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
-d3.json("samples.json").then((bbdata) => {
+d3.json("./samples.json").then((bbdata) => {
 
     // array
-    // var labels = Object.values(bbdata.names);
-    // var sampleSelect = d3.select("#selDataset");
-
+    var labels = Object.values(bbdata.names);
+    var sampleSelect = d3.select("#selDataset");
+    d3.selectAll("#selDataset").on("change", getData);
+    
     // test subject dropdown
-function subjectIds(ids) {
-    let menu = d3.select("#selDataset");
-    let option;
-    for (let i = 0; i < 154; i++) {
-      option = menu.append("option");
-      option.append("option").text(ids[i]);
+// function ids (labels) {
+//    let dropdown = d3.select("#selDataset");
+//    let option;
+//    for (let i = 0; i < 154; i++) {
+//      option = dropdown.append("option");
+//      option.append("option").text(labels[i]);
   
     }
 

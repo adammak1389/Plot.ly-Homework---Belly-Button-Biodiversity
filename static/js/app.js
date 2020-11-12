@@ -29,12 +29,10 @@ d3.json("samples.json").then((bbdata) => {
     console.log(resultArray);
     var sampleresult = resultArray;
     console.log(sampleresult);   
-    var otu_ids = sampleresult.otu_ids;
-    console.log(otu_ids);
-    var otu_labels = sampleresult.otu_labels;
-    console.log(otu_labels);
-    var sample_values = sampleresult.sample_values;
-    console.log(sample_values);
+    var ids = samples.map(d => d.id);
+    console.log(ids)
+    var demographic_info = jsonData.metadata;
+    console.log(demographic_info);
 
     subjectIDs (names);
 //test subject dropdown
@@ -57,11 +55,22 @@ d3.json("samples.json").then((bbdata) => {
     Object.entries(resultMD).forEach(([key, value]) => {
         demographic_information.append("h6").text(`${key}: ${value}`);
            });
+    
+    function bar_chart(id) {
+        var demoInfo = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
+        console.log(demoInfo);
+        var otu_ids = demoInfo.otu_ids.map(d => `otu_id ${d}`);
+        console.log(otu_ids)
+        var otu_labels = demoInfo.otu_labels;
+        console.log(otu_labels);
+        var sample_values = demoInfo.sample_values;
+        console.log(sample_values);
+
 
     //slice data for bar chart
-    var sample_values_slice = sample_values.slice(0, 9).reverse();
-    var otu_ids_slice = otu_ids.slice(0, 9).reverse();
-    var otu_labels_slice = otu_labels.slice(0, 9).reverse();
+    var sample_values_slice = sample_values.slice(0, 10).reverse();
+    var otu_ids_slice = otu_ids.slice(0, 10).reverse();
+    var otu_labels_slice = otu_labels.slice(0, 10).reverse();
 
     // bar chart
     var trace1 = {
@@ -81,6 +90,7 @@ d3.json("samples.json").then((bbdata) => {
           t: 100,
           b: 100
         }
+        title: "Top 10 OTUs"
       };
     
       Plotly.newPlot("bar", bar_chart_data, bar_chart_layout);

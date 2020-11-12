@@ -9,6 +9,7 @@ d3.json("samples.json").then((bbdata) => {
     var names = bbdata.names;
     console.log(names)
     var sample = names[0]
+    console.log(sample)
     var resultArray = samples.filter(sample_object => sample_object.id == sample);
     console.log(resultArray);
     var sampleresult = resultArray;
@@ -35,7 +36,7 @@ d3.json("samples.json").then((bbdata) => {
         var demographic_info = jsonData.metadata.filter(sample_object => sample_object.id == id)[0];
         var list = d3.select("#sample-metadata");
         list.html("")
-        var textEntry = Object.entries(demographic_info).forEach(function ([key, value]) {
+        let textEntry = Object.entries(demographic_info).forEach(function ([key, value]) {
             list.append("p").text(`${key} : ${value}`)
         });
         for (let i = 0; i < id.length; i++) {

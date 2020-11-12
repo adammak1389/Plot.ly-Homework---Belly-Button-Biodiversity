@@ -1,24 +1,8 @@
 var jsonData;
 
 // Use D3 fetch to read the JSON file
-// The data from the JSON file is arbitrarily named importedData as the argument
 d3.json("samples.json").then((bbdata) => {
-
-    // array
-//    var labels = Object.values(bbdata.names);
-//    var sampleSelect = d3.select("#selDataset");
-//    d3.selectAll("#selDataset").on("change", getData);
-
-    // test subject dropdown
-// function ids (labels) {
-//    let dropdown = d3.select("#selDataset");
-//    let option;
-//    for (let i = 0; i < 154; i++) {
-//      option = dropdown.append("option");
-//      option.append("option").text(labels[i]);
-  
-//    });
-
+    jsonData = bbdata
     //extract relevant data sets
     var samples = bbdata.samples;
     console.log(samples);

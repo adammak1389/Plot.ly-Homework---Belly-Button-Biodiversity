@@ -21,7 +21,7 @@ d3.json("samples.json").then((bbdata) => {
 
     subjectIDs (names);
     changeoptions(names[0])
-//test subject dropdown
+// dropdown
     function subjectIDs (otu_ids) {
         var dropdown = d3.select("#selDataset");
         var option;
@@ -31,7 +31,7 @@ d3.json("samples.json").then((bbdata) => {
   
         }
     }
-//subject metadata
+// metadata
     function subjectmetadata(id) {
         var demographic_info = jsonData.metadata.filter(sample_object => sample_object.id == id)[0];
         var list = d3.select("#sample-metadata");
@@ -44,17 +44,8 @@ d3.json("samples.json").then((bbdata) => {
             person.append(textEntry)
         };
     };
-    // //metadata extraction
-    // var metadata = bbdata.metadata;
-    // var resultarrayMD = metadata.filter(sample_object => sample_object.id == sample);
-    // var resultMD = resultarrayMD[0];
-    // var demographic_information = d3.select("#sample-metadata");
-    // demographic_information.html("");
-    // //push metadata to demographic information display
-    // Object.entries(resultMD).forEach(([key, value]) => {
-    //     demographic_information.append("h6").text(`${key}: ${value}`);
-    //        });
-    
+
+    // bar chart
     function bar_chart(id) {
         var demographic_info = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
         console.log(demographic_info);
@@ -71,7 +62,7 @@ d3.json("samples.json").then((bbdata) => {
     var otu_ids_slice = otu_ids.slice(0, 10).reverse();
     var otu_labels_slice = otu_labels.slice(0, 10).reverse();
 
-    // bar chart
+    
     var trace1 = {
         x: sample_values_slice,
         y: `OTU ${otu_ids_slice}`,
@@ -98,12 +89,6 @@ function bubble_chart(id) {
   var otu_ids = demographic_info.otu_ids;
   var otu_labels = demographic_info.otu_labels;
   var sample_values = demographic_info.sample_values;
-  var bubbleLayout = {
-    title: "Bacteria Microbes by Sample",
-    margin: { t: 0 },
-    xaxis: { title: "OTU ID" },
-    margin: { t: 30 }
-  };
   var trace1 = {
     x: otu_ids,
     y: sample_values,
@@ -111,7 +96,7 @@ function bubble_chart(id) {
     mode: 'markers',
     marker: {
       color: otu_ids,
-      colorscale: "Earth",
+      colorscale: "Picnic",
       size: sample_values
     }
   };
@@ -121,12 +106,13 @@ function bubble_chart(id) {
   var layout = {
     title: 'BB Sample Bubble Chart',
     showlegend: false,
+    xaxis: { title: "OTU ID" },
   };
 
   Plotly.newPlot("bubble", data, layout);
     };
 
-//run in html
+// run in html
 function changeoptions(id) {
     subjectmetadata(id);
     bar_chart(id);

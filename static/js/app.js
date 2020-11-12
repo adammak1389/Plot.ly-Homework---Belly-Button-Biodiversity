@@ -38,15 +38,15 @@ d3.json("samples.json").then((bbdata) => {
 
     subjectIDs (names);
 //test subject dropdown
-function subjectIDs (otu_ids) {
-   let dropdown = d3.select("#selDataset");
-   let option;
-   for (let i = 0; i < 154; i++) {
-     option = dropdown.append("option");
-     option.append("option").text(otu_ids[i]);
+    function subjectIDs (otu_ids) {
+        let dropdown = d3.select("#selDataset");
+        let option;
+        for (let i = 0; i < 154; i++) {
+            option = dropdown.append("option");
+            option.append("option").text(otu_ids[i]);
   
+        }
     }
-
     //metadata extraction
     var metadata = bbdata.metadata;
     var resultarrayMD = metadata.filter(sample_object => sample_object.id == sample);

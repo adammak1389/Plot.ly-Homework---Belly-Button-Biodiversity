@@ -9,7 +9,7 @@ d3.json("./samples.json").then((bbdata) => {
     var labels = Object.values(bbdata.names);
     var sampleSelect = d3.select("#selDataset");
     d3.selectAll("#selDataset").on("change", getData);
-    
+
     // test subject dropdown
 // function ids (labels) {
 //    let dropdown = d3.select("#selDataset");
@@ -18,7 +18,7 @@ d3.json("./samples.json").then((bbdata) => {
 //      option = dropdown.append("option");
 //      option.append("option").text(labels[i]);
   
-    }
+    };
 
     //extract relevant data sets
     var samples = bbdata.samples;

@@ -6,9 +6,18 @@ var sample_test = "940"
 d3.json("samples.json").then((bbdata) => {
 
     // array
-    var labels = Object.values(bbdata.names);
-    var sampleSelect = d3.select("#selDataset");
+    // var labels = Object.values(bbdata.names);
+    // var sampleSelect = d3.select("#selDataset");
 
+    // test subject dropdown
+function subjectIds(ids) {
+    let menu = d3.select("#selDataset");
+    let option;
+    for (let i = 0; i < 154; i++) {
+      option = menu.append("option");
+      option.append("option").text(ids[i]);
+  
+    }
 
     //extract relevant data sets
     var samples = bbdata.samples;

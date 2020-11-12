@@ -88,7 +88,7 @@ d3.json("samples.json").then((bbdata) => {
       };
     
       Plotly.newPlot("bar", bar_chart_data, bar_chart_layout);
-
+    }
     // bubble chart
     var trace2 = {
         x: otu_ids,

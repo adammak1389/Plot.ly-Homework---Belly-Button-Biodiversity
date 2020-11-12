@@ -18,7 +18,8 @@ d3.json("samples.json").then((bbdata) => {
     var demographic_info = jsonData.metadata;
     console.log(demographic_info);
 
-    subjectIDs (names);
+    subjectmetadata (names);
+    changeoptions(names[0])
 //test subject dropdown
     function subjectIDs (otu_ids) {
         var dropdown = d3.select("#selDataset");
@@ -89,7 +90,7 @@ d3.json("samples.json").then((bbdata) => {
 
 
     // bubble chart
-function bubble(id) {
+function bubble_chart(id) {
   var demographic_info = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
   test = demographic_info.otu_ids;
   console.log(demographic_info);
@@ -124,4 +125,10 @@ function bubble(id) {
   Plotly.newPlot("bubble", data, layout);
     };
 
+//run in html
+function changeoptions(id) {
+    subjectmetadata(id);
+    bar_chart(id);
+    bubble_chart(id);
+  }
 });

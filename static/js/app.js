@@ -19,7 +19,7 @@ d3.json("samples.json").then((bbdata) => {
     var demographic_info = jsonData.metadata;
     console.log(demographic_info);
 
-    subjectmetadata (names);
+    subjectIDs (names);
     changeoptions(names[0])
 //test subject dropdown
     function subjectIDs (otu_ids) {
@@ -36,7 +36,7 @@ d3.json("samples.json").then((bbdata) => {
         var demographic_info = jsonData.metadata.filter(sample_object => sample_object.id == id)[0];
         var list = d3.select("#sample-metadata");
         list.html("")
-        let textEntry = Object.entries(demographic_info).forEach(function ([key, value]) {
+        var textEntry = Object.entries(demographic_info).forEach(function ([key, value]) {
             list.append("p").text(`${key} : ${value}`)
         });
         for (let i = 0; i < id.length; i++) {

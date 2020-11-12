@@ -122,4 +122,6 @@ function bubble(id) {
   };
 
   Plotly.newPlot("bubble", data, layout);
-};
+    };
+
+});

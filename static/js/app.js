@@ -1,14 +1,13 @@
 
-var sample_test = "940"
 
 // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
 d3.json("./samples.json").then((bbdata) => {
 
     // array
-    var labels = Object.values(bbdata.names);
-    var sampleSelect = d3.select("#selDataset");
-    d3.selectAll("#selDataset").on("change", getData);
+//    var labels = Object.values(bbdata.names);
+//    var sampleSelect = d3.select("#selDataset");
+//    d3.selectAll("#selDataset").on("change", getData);
 
     // test subject dropdown
 // function ids (labels) {
@@ -23,9 +22,12 @@ d3.json("./samples.json").then((bbdata) => {
     //extract relevant data sets
     var samples = bbdata.samples;
     console.log(samples);
-    var resultarraysamples = samples.filter(sample => sample.id == sample_test);
-    console.log(resultarraysamples);
-    var sampleresult = resultarraysamples[0];
+    var names = bbdata.names;
+    console.log(names)
+    var sample = names[0]
+    var resultArray = samples.filter(sample_object => sample_object.id == sample);
+    console.log(resultArray);
+    var sampleresult = resultArray;
     console.log(sampleresult);   
     var otu_ids = sampleresult.otu_ids;
     console.log(otu_ids);
@@ -34,9 +36,20 @@ d3.json("./samples.json").then((bbdata) => {
     var sample_values = sampleresult.sample_values;
     console.log(sample_values);
 
+    subjectIDs (names);
+//test subject dropdown
+function subjectIDs (otu_ids) {
+   let dropdown = d3.select("#selDataset");
+   let option;
+   for (let i = 0; i < 154; i++) {
+     option = dropdown.append("option");
+     option.append("option").text(otu_ids[i]);
+  
+    }
+
     //metadata extraction
     var metadata = bbdata.metadata;
-    var resultarrayMD = metadata.filter(sample => sample.id == sampleTest);
+    var resultarrayMD = metadata.filter(sample_object => sample_object.id == sample);
     var resultMD = resultarrayMD[0];
     var demographic_information = d3.select("#sample-metadata");
     demographic_information.html("");

@@ -18,7 +18,7 @@ d3.json("./samples.json").then((bbdata) => {
 //      option = dropdown.append("option");
 //      option.append("option").text(labels[i]);
   
-    });
+//    });
 
     //extract relevant data sets
     var samples = bbdata.samples;

@@ -41,13 +41,13 @@ d3.json("samples.json").then((bbdata) => {
            });
     
     function bar_chart(id) {
-        var demoInfo = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
-        console.log(demoInfo);
-        var otu_ids = demoInfo.otu_ids.map(d => `otu_id ${d}`);
+        var demographic_info = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
+        console.log(demographic_info);
+        var otu_ids = demographic_info.otu_ids.map(d => `otu_id ${d}`);
         console.log(otu_ids)
-        var otu_labels = demoInfo.otu_labels;
+        var otu_labels = demographic_info.otu_labels;
         console.log(otu_labels);
-        var sample_values = demoInfo.sample_values;
+        var sample_values = demographic_info.sample_values;
         console.log(sample_values);
 
 

@@ -21,24 +21,37 @@ d3.json("samples.json").then((bbdata) => {
     subjectIDs (names);
 //test subject dropdown
     function subjectIDs (otu_ids) {
-        let dropdown = d3.select("#selDataset");
-        let option;
-        for (let i = 0; i < 154; i++) {
+        var dropdown = d3.select("#selDataset");
+        var option;
+        for (var i = 0; i < 154; i++) {
             option = dropdown.append("option");
             option.append("option").text(otu_ids[i]);
   
         }
     }
-    //metadata extraction
-    var metadata = bbdata.metadata;
-    var resultarrayMD = metadata.filter(sample_object => sample_object.id == sample);
-    var resultMD = resultarrayMD[0];
-    var demographic_information = d3.select("#sample-metadata");
-    demographic_information.html("");
-    //push metadata to demographic information display
-    Object.entries(resultMD).forEach(([key, value]) => {
-        demographic_information.append("h6").text(`${key}: ${value}`);
-           });
+//subject metadata
+    function subjectmetadata(id) {
+        var demographic_info = jsonData.metadata.filter(sample_object => sample_object.id == id)[0];
+        var list = d3.select("#sample-metadata");
+        list.html("")
+        var textEntry = Object.entries(demographic_info).forEach(function ([key, value]) {
+            list.append("p").text(`${key} : ${value}`)
+        });
+        for (let i = 0; i < id.length; i++) {
+            person = list.append("p");
+            person.append(textEntry)
+        };
+    };
+    // //metadata extraction
+    // var metadata = bbdata.metadata;
+    // var resultarrayMD = metadata.filter(sample_object => sample_object.id == sample);
+    // var resultMD = resultarrayMD[0];
+    // var demographic_information = d3.select("#sample-metadata");
+    // demographic_information.html("");
+    // //push metadata to demographic information display
+    // Object.entries(resultMD).forEach(([key, value]) => {
+    //     demographic_information.append("h6").text(`${key}: ${value}`);
+    //        });
     
     function bar_chart(id) {
         var demographic_info = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
@@ -73,29 +86,40 @@ d3.json("samples.json").then((bbdata) => {
     
       Plotly.newPlot("bar", bar_chart_data, bar_chart_layout);
     }
-    // bubble chart
-    var trace2 = {
-        x: otu_ids,
-        y: sample_values,
-        mode: 'markers',
-        marker: {
-          size: sample_values,
-          color: otu_ids,
-          text: otu_labels 
-        }
-      };
-      
-      var bubble_chart_data = [trace2];
 
-      var bubble_chart_layout = {
-        
-        margin: {
-          l: 50,
-          r: 50,
-          t: 50,
-          b: 50
-        }
-      };
-    
-      Plotly.newPlot("bubble", bubble_chart_data, bubble_chart_layout);
-});
+
+    // bubble chart
+function bubble(id) {
+  var demographic_info = jsonData.samples.filter(sample_object => sample_object.id == id)[0];
+  test = demographic_info.otu_ids;
+  console.log(demographic_info);
+  var otu_ids = demographic_info.otu_ids;
+  var otu_labels = demographic_info.otu_labels;
+  var sample_values = demographic_info.sample_values;
+  var bubbleLayout = {
+    title: "Bacteria Microbes by Sample",
+    margin: { t: 0 },
+    xaxis: { title: "OTU ID" },
+    margin: { t: 30 }
+  };
+  var trace1 = {
+    x: otu_ids,
+    y: sample_values,
+    text: otu_labels,
+    mode: 'markers',
+    marker: {
+      color: otu_ids,
+      colorscale: "Earth",
+      size: sample_values
+    }
+  };
+
+  var data = [trace1];
+
+  var layout = {
+    title: 'BB Sample Bubble Chart',
+    showlegend: false,
+  };
+
+  Plotly.newPlot("bubble", data, layout);
+};

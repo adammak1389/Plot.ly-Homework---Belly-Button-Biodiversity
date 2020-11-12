@@ -84,12 +84,6 @@ d3.json("samples.json").then((bbdata) => {
       var bar_chart_data = [trace1];
 
       var bar_chart_layout = {
-        margin: {
-          l: 100,
-          r: 100,
-          t: 100,
-          b: 100
-        }
         title: "Top 10 OTUs"
       };
     
